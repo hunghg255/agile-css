@@ -3,11 +3,13 @@
 [![npm version](https://badge.fury.io/js/agile-css.svg)](https://badge.fury.io/js/agile-css) [![npm](https://img.shields.io/npm/dw/agile-css.svg?logo=npm)](https://www.npmjs.com/package/agile-css) [![npm](https://img.shields.io/bundlephobia/minzip/agile-css)](https://www.npmjs.com/package/agile-css)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
-### Install
+### Install and vscode extensions
 
 ```bash
 npm install agile-css
 ```
+
+[Agile Css Autocomplete extentions](https://marketplace.visualstudio.com/items?itemName=AgileCssAutocomplete.agile-css-autocomplete&ssr=false#overview)
 
 ### Setup: add file `agilecss.config.mjs`
 
