@@ -1,5 +1,5 @@
 import rtlCSSJS from 'rtl-css-js';
-import vscode_css_languageservice_1 from 'vscode-css-languageservice';
+import * as vscode_css_languageservice_1 from 'vscode-css-languageservice';
 
 // src/utils/defineConfig.ts
 var defineConfig = (options) => () => {
@@ -1067,7 +1067,7 @@ var getPseudo = (className) => {
   return pseudos.reduce(function(str, pseudo$1) {
     const _pseudo = pseudo$1.replace(/^\||\(.*\)/g, "");
     const valNumber = pseudo$1.replace(/.*\(|\)|[\|\w-]*$/g, "");
-    const pseudoShorthand = pseudo[_pseudo] || _pseudo;
+    const pseudoShorthand = CSS_PSEUDO[_pseudo] || _pseudo;
     if (valNumber) {
       return str + ":" + pseudoShorthand + "(" + valNumber + ")";
     }
@@ -1382,8 +1382,8 @@ var AgileCss = class {
   addPropsSyntax(props) {
     this.cssProps = onExtends_default({}, this.cssProps, props);
   }
-  addPseudoSyntax(pseudo2) {
-    this.pseudo = onExtends_default({}, this.pseudo, pseudo2);
+  addPseudoSyntax(pseudo) {
+    this.pseudo = onExtends_default({}, this.pseudo, pseudo);
   }
   // create() {
   //   return new AgileCss();

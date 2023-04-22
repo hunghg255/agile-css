@@ -7,8 +7,26 @@ var vscode_css_languageservice_1 = require('vscode-css-languageservice');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
 var rtlCSSJS__default = /*#__PURE__*/_interopDefault(rtlCSSJS);
-var vscode_css_languageservice_1__default = /*#__PURE__*/_interopDefault(vscode_css_languageservice_1);
+var vscode_css_languageservice_1__namespace = /*#__PURE__*/_interopNamespace(vscode_css_languageservice_1);
 
 // src/utils/defineConfig.ts
 var defineConfig = (options) => () => {
@@ -983,10 +1001,10 @@ var pixelToRem = (rootFontSize) => {
 };
 var pixelToRem_default = pixelToRem;
 var cssToTextDocument = function(text) {
-  return vscode_css_languageservice_1__default.default.TextDocument.create("untitled://untitled", "css", 1, text);
+  return vscode_css_languageservice_1__namespace.TextDocument.create("untitled://untitled", "css", 1, text);
 };
 var validator = (css) => {
-  const cssLS = vscode_css_languageservice_1__default.default.getCSSLanguageService();
+  const cssLS = vscode_css_languageservice_1__namespace.getCSSLanguageService();
   const document = cssToTextDocument(css);
   const stylesheet = cssLS.parseStylesheet(document);
   const diagnostics = cssLS.doValidation(document, stylesheet);
@@ -1076,7 +1094,7 @@ var getPseudo = (className) => {
   return pseudos.reduce(function(str, pseudo$1) {
     const _pseudo = pseudo$1.replace(/^\||\(.*\)/g, "");
     const valNumber = pseudo$1.replace(/.*\(|\)|[\|\w-]*$/g, "");
-    const pseudoShorthand = pseudo[_pseudo] || _pseudo;
+    const pseudoShorthand = CSS_PSEUDO[_pseudo] || _pseudo;
     if (valNumber) {
       return str + ":" + pseudoShorthand + "(" + valNumber + ")";
     }
@@ -1391,8 +1409,8 @@ var AgileCss = class {
   addPropsSyntax(props) {
     this.cssProps = onExtends_default({}, this.cssProps, props);
   }
-  addPseudoSyntax(pseudo2) {
-    this.pseudo = onExtends_default({}, this.pseudo, pseudo2);
+  addPseudoSyntax(pseudo) {
+    this.pseudo = onExtends_default({}, this.pseudo, pseudo);
   }
   // create() {
   //   return new AgileCss();

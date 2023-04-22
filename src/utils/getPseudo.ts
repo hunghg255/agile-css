@@ -1,3 +1,5 @@
+import { CSS_PSEUDO } from "../constants/constant";
+
 const getPseudo = (className: string): string => {
   const pseudos: any = className.match(/\|\w*(\([\w-+]*\)|)/g);
 
@@ -10,7 +12,7 @@ const getPseudo = (className: string): string => {
 
     const valNumber = pseudo$1.replace(/.*\(|\)|[\|\w-]*$/g, '');
     //@ts-ignore
-    const pseudoShorthand = pseudo[_pseudo] || _pseudo;
+    const pseudoShorthand = CSS_PSEUDO[_pseudo] || _pseudo;
 
     if (valNumber) {
       return str + ':' + pseudoShorthand + '(' + valNumber + ')';
