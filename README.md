@@ -1,0 +1,115 @@
+### Auto generate css atomic
+
+[![npm version](https://badge.fury.io/js/agile-css.svg)](https://badge.fury.io/js/agile-css) [![npm](https://img.shields.io/npm/dw/agile-css.svg?logo=npm)](https://www.npmjs.com/package/agile-css) [![npm](https://img.shields.io/bundlephobia/minzip/agile-css)](https://www.npmjs.com/package/agile-css)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
+### Install
+
+```bash
+npm install agile-css
+```
+
+### Setup: add file `agilecss.config.mjs`
+
+```js
+import { defineConfig, pfs, pixelToRem, rtl, validator } from "agile-css/dist/index.mjs";
+
+export default defineConfig({
+  input: ["./src/**/*.jsx", "./src/**/*.js", "./src/**/*.tsx"],
+  output: "./src/agile-css.css",
+  defaultCss: `
+    body {
+      font-size: 14px;
+    }
+  `,
+  validator,
+  cache: true,
+  plugins: [pixelToRem(62.5), rtl(), pfs(), testplugin2()],
+  customValue(value) {
+    // customValue
+    console.log(value);
+    return value;
+  },
+  breakpoints: {
+    sm: "768px",
+    md: "992px",
+    lg: "1200px",
+  },
+  custom: {
+    "color-primary": "var(--color-primary)",
+    "color-secondary": "var(--color-secondary)",
+    "color-tertiary": "var(--color-tertiary)",
+    "color-quaternary": "var(--color-quaternary)",
+  },
+});
+
+function testplugin2() {
+  return ({ addBase }) => {
+    addBase(`.testttttttttt { color: red }`);
+  };
+}
+```
+
+### CLI (file package.json)
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "agile-css": "agile-css -w",
+  },
+  ...
+}
+```
+
+### Compile
+
+```bash
+npm run agile-css
+```
+
+### Syntax
+
+```css
+<property>:<value>|<pseudo>|<pseudo><important -> "!">...@<media>
+
+Eg:
+
+Class Name               CSS
+-----------------------------------------------------------------------------------------
+c:red                 -> .c\:red { color: red }
+bgc:blue!             -> .bgc\:blue\! { background-color: blue !important }
+bd:1px_solid_yellow   -> .bd\:1px_solid_yellow { border: 1px solid yellow }
+p:30px@md             -> @media (min-width:992px) { .p\:30px\@md { padding: 30px }
+m:20px@+300px         -> @media (max-width:300px) { .m\:20px\@\+300px { margin: 20px } }
+fz:20px|h             -> .fz\:20px\|h:hover { font-size: 20px }
+cnt:(After_cnt)||af   -> .cnt\:\(After_cnt\)\|\|af::after { content: 'After ctn' }
+cnt:(Before_cnt)|be   -> .cnt\:\(Before_cnt\)\|be:before { content: 'Before ctn' }
+cnt:(Hover)|h||be     -> .cnt\:\(Hover\)\|be:hover:before { content: 'Hover' }
+trf:scale(2)          -> .trf/:scale\(2\) { transform: scale(2) }
+m:calc(20px_+_10px)   -> .m\:calc\(20px_+_10px\) { margin: calc(20px + 10px) }
+```
+
+### Html
+
+```html
+<div class="c:red c:blue|h bgc:color-primary fz:20px ml:10px w:30%@md p:30px@md m:20px@+300px pos:relative!"></div>
+```
+
+### Output: css code
+
+```css
+.c\:red { color: red }
+.c\:blue\|h:hover { color: blue }
+.bgc\:color-primary { background-color: var(--color-primary) }
+.fz\:20px { font-size: 20px }
+.ml\:10px { margin-left: 10px }
+[dir="rtl"] .ml\:10px { margin-right: 10px }
+.pos\:relative\! { position: relative !important }
+@media (max-width:300px) {
+.m\:20px\@\+300px { margin: 20px } }
+@media (min-width:992px) {
+.p\:30px\@md { padding: 30px }
+.w\:30\%\@md { width: 30% } }
+```
