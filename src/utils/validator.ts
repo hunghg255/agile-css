@@ -1,6 +1,6 @@
 
 
-import * as vscode_css_languageservice_1 from 'vscode-css-languageservice';
+import vscode_css_languageservice_1 from 'vscode-css-languageservice';
 
 const cssToTextDocument = function (text: string) {
     return vscode_css_languageservice_1.TextDocument.create('untitled://untitled', 'css', 1, text);

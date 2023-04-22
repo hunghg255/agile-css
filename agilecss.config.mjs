@@ -1,4 +1,4 @@
-import { defineConfig, pfs, pixelToRem, rtl, validator } from "agile-css/dist/index.mjs";
+import { defineConfig, pfs, pixelToRem, rtl, validator } from "./dist/index.mjs";
 
 export default defineConfig({
   input: ['./srcTest/**/*.jsx', './srcTest/**/*.js', './srcTest/**/*.tsx'],

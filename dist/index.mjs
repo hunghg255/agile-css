@@ -1,5 +1,5 @@
 import rtlCSSJS from 'rtl-css-js';
-import * as vscode_css_languageservice_1 from 'vscode-css-languageservice';
+import vscode_css_languageservice_1 from 'vscode-css-languageservice';
 
 // src/utils/defineConfig.ts
 var defineConfig = (options) => () => {

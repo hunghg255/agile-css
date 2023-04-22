@@ -1,4 +1,4 @@
-import * as vscode_css_languageservice_1 from 'vscode-css-languageservice';
+import vscode_css_languageservice_1 from 'vscode-css-languageservice';
 
 interface Config {
     /**
