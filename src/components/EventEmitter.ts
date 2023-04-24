@@ -1,5 +1,3 @@
-import onExtends from "../utils/onExtends";
-
 class EventEmitter {
   public id: any;
   public events: any;
@@ -9,16 +7,14 @@ class EventEmitter {
     this.events = {};
   }
 
-  on(eventType: any, listener: any) {
-    let _extends2;
+  on(eventType: string, listener: any) {
+    let _extends2: any;
 
     this.id++;
-    this.events = onExtends(
-      //@ts-ignore
+    this.events = Object.assign(
       {},
       this.events,
       ((_extends2 = {}),
-      //@ts-ignore
       (_extends2[eventType] = [].concat(this.events[eventType] || [], [
         //@ts-ignore
         {
@@ -33,15 +29,12 @@ class EventEmitter {
 
   off(id: any) {
     for (let eventType in this.events) {
-      let _extends3;
-      //@ts-ignore
-      this.events = onExtends(
-        //@ts-ignore
+      let _extends3: any;
+      this.events = Object.assign(
         {},
         this.events,
         ((_extends3 = {}),
-        //@ts-ignore
-        (_extends3[eventType] = this.events[eventType].filter(function(item) {
+        (_extends3[eventType] = this.events[eventType].filter(function(item: any) {
           return item.id !== id;
         })),
         _extends3)

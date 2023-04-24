@@ -813,37 +813,18 @@ var cssLinearInterpolation = (value) => {
 };
 var cssLinearInterpolation_default = cssLinearInterpolation;
 
-// src/utils/onExtends.ts
-function onExtends() {
-  let _extends = Object.assign || function(target) {
-    for (let i = 1; i < arguments.length; i++) {
-      let source = arguments[i];
-      for (let key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-  return _extends.apply(this, arguments);
-}
-var onExtends_default = onExtends;
-
 // src/utils/stylesMap.ts
 var stylesMap = (styles, callback) => {
   return Object.entries(styles).reduce(function(obj, _ref) {
     let _extends2;
     let breakpoint = _ref[0], style = _ref[1];
-    return onExtends_default(
-      //@ts-ignore
+    return Object.assign(
       {},
       obj,
-      (_extends2 = {}, //@ts-ignore
-      _extends2[breakpoint] = Object.entries(style).reduce(
+      (_extends2 = {}, _extends2[breakpoint] = Object.entries(style).reduce(
         function(obj2, _ref2) {
           let selector = _ref2[0], css = _ref2[1];
-          return onExtends_default({}, obj2, callback(selector, css));
+          return Object.assign({}, obj2, callback(selector, css));
         },
         {}
       ), _extends2)
@@ -1129,12 +1110,10 @@ var EventEmitter = class {
   on(eventType, listener) {
     let _extends2;
     this.id++;
-    this.events = onExtends_default(
-      //@ts-ignore
+    this.events = Object.assign(
       {},
       this.events,
-      (_extends2 = {}, //@ts-ignore
-      _extends2[eventType] = [].concat(this.events[eventType] || [], [
+      (_extends2 = {}, _extends2[eventType] = [].concat(this.events[eventType] || [], [
         //@ts-ignore
         {
           listener,
@@ -1147,12 +1126,10 @@ var EventEmitter = class {
   off(id) {
     for (let eventType in this.events) {
       let _extends3;
-      this.events = onExtends_default(
-        //@ts-ignore
+      this.events = Object.assign(
         {},
         this.events,
-        (_extends3 = {}, //@ts-ignore
-        _extends3[eventType] = this.events[eventType].filter(function(item) {
+        (_extends3 = {}, _extends3[eventType] = this.events[eventType].filter(function(item) {
           return item.id !== id;
         }), _extends3)
       );
@@ -1200,7 +1177,7 @@ var AgileCss = class {
     this.prevInput = "";
   }
   handlePluginAddStyles(styles) {
-    this.styles = onExtends_default({}, this.styles, styles);
+    this.styles = Object.assign({}, this.styles, styles);
   }
   handlePluginAddBase(css) {
     if (!this.config.defaultCss.includes(css)) {
@@ -1296,17 +1273,13 @@ var AgileCss = class {
         if (_this2._checkValidate(className, selector, style)) {
           return styles;
         }
-        return onExtends_default(
-          //@ts-ignore
+        return Object.assign(
           {},
           styles,
-          (_extends3 = {}, //@ts-ignore
-          _extends3[breakpoint] = onExtends_default(
-            //@ts-ignore
+          (_extends3 = {}, _extends3[breakpoint] = Object.assign(
             {},
             styles[breakpoint],
-            (_extends2 = {}, //@ts-ignore
-            _extends2[selector] = [property, handleValueHasContent_default(value)], _extends2)
+            (_extends2 = {}, _extends2[selector] = [property, handleValueHasContent_default(value)], _extends2)
           ), _extends3)
         );
       },
@@ -1341,7 +1314,7 @@ var AgileCss = class {
     if (!cfg) {
       cfg = {};
     }
-    this.config = onExtends_default({}, this.defaultConfig, cfg);
+    this.config = Object.assign({}, this.defaultConfig, cfg);
     return this;
   }
   setClassNames(classNames) {
@@ -1353,7 +1326,7 @@ var AgileCss = class {
   getCss() {
     let _this3 = this;
     let css = Object.entries(this.styles).reduce(function(css2, _ref) {
-      let breakpoint = _ref[0], style = _ref[1];
+      let breakpoint = _ref[0], style = _ref[1] ?? {};
       const newBreakpoint = _this3.config.breakpoints[breakpoint] || breakpoint;
       const _Object$keys = Object.keys(style), className = _Object$keys[0];
       const isMax = _this3._isMediaMaxWidth(className);
@@ -1380,10 +1353,10 @@ var AgileCss = class {
     this._customValue = callback;
   }
   addPropsSyntax(props) {
-    this.cssProps = onExtends_default({}, this.cssProps, props);
+    this.cssProps = Object.assign({}, this.cssProps, props);
   }
   addPseudoSyntax(pseudo) {
-    this.pseudo = onExtends_default({}, this.pseudo, pseudo);
+    this.pseudo = Object.assign({}, this.pseudo, pseudo);
   }
   // create() {
   //   return new AgileCss();

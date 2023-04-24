@@ -1,10 +1,8 @@
-
 export { default as defineConfig } from './utils/defineConfig';
 export { default as pfs } from './utils/pfs';
 export { default as rtl } from './utils/rtl';
 export { default as pixelToRem } from './utils/pixelToRem';
 export { default as validator } from './utils/validator';
-
 
 import {
   COMPILED_SUCCESS,
@@ -21,7 +19,6 @@ import getImportant from './utils/getImportant';
 import getPseudo from './utils/getPseudo';
 import getStyle from './utils/getStyle';
 import getValue from './utils/getValue';
-import onExtends from './utils/onExtends';
 import removeDuplicate from './utils/removeDuplicate';
 import handleValueHasContent from './utils/handleValueHasContent';
 import removeNextLineWithIgnore from './utils/removeNextLineWithIgnore';
@@ -63,7 +60,7 @@ class AgileCss {
     this.config = this.defaultConfig;
     this.cache = [];
 
-    this._customValue = function(value: any) {
+    this._customValue = function (value: any) {
       return value;
     };
 
@@ -75,8 +72,7 @@ class AgileCss {
   }
 
   handlePluginAddStyles(styles: any) {
-    //@ts-ignore
-    this.styles = onExtends({}, this.styles, styles);
+    this.styles = Object.assign({}, this.styles, styles);
   }
 
   handlePluginAddBase(css: any) {
@@ -92,9 +88,9 @@ class AgileCss {
   plugins(_plugins: any) {
     let _this = this;
 
-    event.on('plugin', function() {
+    event.on('plugin', function () {
       if (_plugins.length) {
-        _plugins.forEach(function(plugin: any) {
+        _plugins.forEach(function (plugin: any) {
           plugin({
             config: _this.config,
             cssProps: _this.cssProps,
@@ -169,7 +165,7 @@ class AgileCss {
         message: diagnostics[0].message,
         className: className,
       });
-      this.classNames = this.classNames.filter(function(name: any) {
+      this.classNames = this.classNames.filter(function (name: any) {
         return name !== className;
       });
       return true;
@@ -186,11 +182,11 @@ class AgileCss {
   _setStyles() {
     const _this2 = this;
 
-    this.styles = this.classNames.reduce(function(
+    this.styles = this.classNames.reduce(function (
       styles: any,
       className: string
     ) {
-      let _extends2, _extends3;
+      let _extends2: any, _extends3: any;
 
       const propShorthand = className.replace(/:.*/g, '');
       const property = _this2.cssProps[propShorthand];
@@ -221,18 +217,14 @@ class AgileCss {
         return styles;
       }
 
-      return onExtends(
-        //@ts-ignore
+      return Object.assign(
         {},
         styles,
         ((_extends3 = {}),
-        //@ts-ignore
-        (_extends3[breakpoint] = onExtends(
-          //@ts-ignore
+        (_extends3[breakpoint] = Object.assign(
           {},
           styles[breakpoint],
           ((_extends2 = {}),
-          //@ts-ignore
           (_extends2[selector] = [property, handleValueHasContent(value)]),
           _extends2)
         )),
@@ -279,8 +271,7 @@ class AgileCss {
       cfg = {};
     }
 
-    //@ts-ignore
-    this.config = onExtends({}, this.defaultConfig, cfg);
+    this.config = Object.assign({}, this.defaultConfig, cfg);
     return this;
   }
 
@@ -296,17 +287,17 @@ class AgileCss {
   getCss() {
     let _this3 = this;
 
-    let css = Object.entries(this.styles).reduce(function(css, _ref) {
+    let css = Object.entries(this.styles).reduce(function (css, _ref) {
       let breakpoint = _ref[0],
-        style = _ref[1];
+        style = _ref[1] ?? {};
       const newBreakpoint = _this3.config.breakpoints[breakpoint] || breakpoint;
-      //@ts-ignore
+
       const _Object$keys = Object.keys(style),
         className = _Object$keys[0];
 
-        const isMax = _this3._isMediaMaxWidth(className);
+      const isMax = _this3._isMediaMaxWidth(className);
 
-        const cssString = styleToCssString(style as any);
+      const cssString = styleToCssString(style as {});
 
       if (newBreakpoint === MEDIA_DEFAULT) {
         return css + '\n' + cssString;
@@ -344,13 +335,11 @@ class AgileCss {
   }
 
   addPropsSyntax(props: any) {
-    //@ts-ignore
-    this.cssProps = onExtends({}, this.cssProps, props);
+    this.cssProps = Object.assign({}, this.cssProps, props);
   }
 
   addPseudoSyntax(pseudo: any) {
-    //@ts-ignore
-    this.pseudo = onExtends({}, this.pseudo, pseudo);
+    this.pseudo = Object.assign({}, this.pseudo, pseudo);
   }
 
   // create() {
@@ -359,4 +348,3 @@ class AgileCss {
 }
 
 export default AgileCss;
-

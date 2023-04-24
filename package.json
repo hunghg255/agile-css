@@ -1,6 +1,6 @@
 {
   "name": "agile-css",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -15,7 +15,7 @@
   "scripts": {
     "build": "tsup --format cjs,esm --dts --env.NODE_ENV production",
     "lint": "tsc",
-    "test:cli": "ts-node cli.mjs -w",
+    "test:cli": "ts-node cli.mjs -w -p 1234",
     "agile-css": "agile-css -w"
   },
   "author": "hunghg255",
