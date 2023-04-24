@@ -60,6 +60,7 @@ function testplugin2() {
   "scripts": {
     ...
     "agile-css": "agile-css -w",
+    "agile-css-port": "agile-css -p 1234 -w",
   },
   ...
 }
