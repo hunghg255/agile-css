@@ -1,6 +1,6 @@
 {
   "name": "agile-css",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -13,7 +13,7 @@
     "cli.mjs"
   ],
   "scripts": {
-    "build": "tsup --format cjs,esm --dts --env.NODE_ENV production",
+    "build": "tsup --format cjs,esm --dts --minify terser --env.NODE_ENV production",
     "lint": "tsc",
     "test:cli": "ts-node cli.mjs -w -p 1234",
     "agile-css": "agile-css -w"
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/node": "^18.15.13",
     "husky": "^8.0.3",
+    "terser": "^5.17.1",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
