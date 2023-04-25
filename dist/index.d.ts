@@ -1,4 +1,4 @@
-import vscode_css_languageservice_1 from 'vscode-css-languageservice';
+import * as vscodeCss from 'vscode-css-languageservice';
 
 interface Config {
     /**
@@ -84,6 +84,21 @@ interface Config {
      */
     validator?: (css: string) => any;
 }
+interface IDefineConfig {
+    input: string[];
+    output: string;
+    defaultCss?: string;
+    validator?: (css: string) => any;
+    cache?: boolean;
+    plugins?: Plugin[];
+    customValue?: (value: string) => string;
+    breakpoints?: {
+        [breakpoint: string]: string;
+    };
+    custom?: {
+        [customCssVariable: string]: string;
+    };
+}
 type Style = [string, string];
 interface SelectorStyle {
     [selector: string]: Style;
@@ -108,7 +123,7 @@ type Plugin = (styles: PluginOptions) => void;
 type CssProps = Record<string, string>;
 type Pseudo = Record<string, string>;
 
-declare const defineConfig: (options: Config) => () => Config;
+declare const defineConfig: (options: IDefineConfig) => () => IDefineConfig;
 
 declare const pfs: (minDevice?: number, maxDevice?: number) => Plugin;
 
@@ -116,7 +131,7 @@ declare const rtl: () => Plugin;
 
 declare const pixelToRem: (rootFontSize: number) => Plugin;
 
-declare const validator: (css: string) => vscode_css_languageservice_1.Diagnostic[];
+declare const validator: (css: string) => vscodeCss.Diagnostic[];
 
 declare class AgileCss {
     classNames: any;

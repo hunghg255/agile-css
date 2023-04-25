@@ -1,6 +1,6 @@
-import { Config } from "../types/type";
+import { IDefineConfig } from "../types/type";
 
-const defineConfig = (options: Config) => (): Config => {
+const defineConfig = (options: IDefineConfig) => (): IDefineConfig => {
   return options;
 };
 
