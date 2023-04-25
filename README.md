@@ -11,7 +11,9 @@ npm i agile-css@latest
 
 [Agile Css Autocomplete extentions](https://marketplace.visualstudio.com/items?itemName=AgileCssAutocomplete.agile-css-autocomplete&ssr=false#overview)
 
-### Setup: add file `agilecss.config.ts`
+### Setup
+
+### Create file: `agilecss.config.ts` or `agilecss.config.mjs` or `agilecss.config.js`
 
 ```js
 import { defineConfig, pfs, pixelToRem, rtl, validator } from "agile-css";

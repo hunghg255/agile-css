@@ -25,14 +25,19 @@ function log(arr: any) {
   );
 }
 
+const NAME = 'agilecss';
+
 export async function startCli(
   cwd = process.cwd(),
   argv = process.argv,
 ) {
-  const configDir = path.resolve(cwd, 'agilecss.config.ts');
+  const configDir = path.resolve(cwd, NAME);
+
+  console.log(configDir);
+
 
   try {
-    const defineConfig = tryRequire('./agilecss.config', configDir) || {};
+    const defineConfig = tryRequire(`./${NAME}.config`, configDir) || {};
 
     const {
       input: configInput,
