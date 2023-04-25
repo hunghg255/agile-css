@@ -341,10 +341,6 @@ class AgileCss {
   addPseudoSyntax(pseudo: any) {
     this.pseudo = Object.assign({}, this.pseudo, pseudo);
   }
-
-  // create() {
-  //   return new AgileCss();
-  // }
 }
 
 export default AgileCss;

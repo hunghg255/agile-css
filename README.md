@@ -1,20 +1,20 @@
-### Auto generate css atomic
+### Atomic css
 
 [![npm version](https://badge.fury.io/js/agile-css.svg)](https://badge.fury.io/js/agile-css) [![npm](https://img.shields.io/npm/dw/agile-css.svg?logo=npm)](https://www.npmjs.com/package/agile-css) [![npm](https://img.shields.io/bundlephobia/minzip/agile-css)](https://www.npmjs.com/package/agile-css)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
-### Install and vscode extensions
+### Install package and vscode extensions
 
 ```bash
-npm install agile-css
+npm i agile-css@latest
 ```
 
 [Agile Css Autocomplete extentions](https://marketplace.visualstudio.com/items?itemName=AgileCssAutocomplete.agile-css-autocomplete&ssr=false#overview)
 
-### Setup: add file `agilecss.config.mjs`
+### Setup: add file `agilecss.config.ts`
 
 ```js
-import { defineConfig, pfs, pixelToRem, rtl, validator } from "agile-css/dist/index.mjs";
+import { defineConfig, pfs, pixelToRem, rtl, validator } from "agile-css";
 
 export default defineConfig({
   input: ["./src/**/*.jsx", "./src/**/*.js", "./src/**/*.tsx"],
@@ -28,8 +28,6 @@ export default defineConfig({
   cache: true,
   plugins: [pixelToRem(62.5), rtl(), pfs(), testplugin2()],
   customValue(value) {
-    // customValue
-    console.log(value);
     return value;
   },
   breakpoints: {

@@ -1,21 +1,21 @@
 {
   "name": "agile-css",
-  "version": "2.1.1",
+  "version": "2.1.4",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "bin": {
-    "agile-css": "./cli.mjs"
+    "agile-css": "./bin/agilecss.mjs"
   },
   "files": [
-    "dist",
-    "cli.mjs"
+    "bin",
+    "dist"
   ],
   "scripts": {
-    "build": "tsup --format cjs,esm --dts --minify terser --env.NODE_ENV production",
-    "lint": "tsc",
-    "test:cli": "ts-node cli.mjs -w -p 1234",
+    "build": "unbuild",
+    "stub": "unbuild --stub",
+    "test:cli": "ts-node ./dist/cli.mjs -w -p 1234",
     "agile-css": "agile-css -w"
   },
   "author": "hunghg255",
@@ -23,16 +23,26 @@
     "@types/node": "^18.15.13",
     "husky": "^8.0.3",
     "terser": "^5.17.1",
+    "tslib": "^2.5.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "agile-css": "^2.0.4",
+    "agile-css": "^2.1.3",
     "chokidar": "^3.5.3",
     "commander": "^10.0.1",
     "cssnano": "^6.0.0",
     "globby": "^13.1.4",
+    "jiti": "^1.18.2",
     "rtl-css-js": "^1.16.1",
-    "vscode-css-languageservice": "^6.2.4"
-  }
+    "unbuild": "^1.2.1",
+    "vscode-css-languageservice": "^6.0.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "keywords": ["Atomic Css", "Reactjs", "Nextjs"]
 }

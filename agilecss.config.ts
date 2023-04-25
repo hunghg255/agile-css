@@ -1,4 +1,4 @@
-import { defineConfig, pfs, pixelToRem, rtl, validator } from "./dist/index.mjs";
+import { defineConfig, pfs, pixelToRem, rtl, validator } from "agile-css";
 
 export default defineConfig({
   input: ['./srcTest/**/*.jsx', './srcTest/**/*.js', './srcTest/**/*.tsx'],
@@ -6,11 +6,6 @@ export default defineConfig({
   validator,
   cache: true,
   plugins: [pixelToRem(62.5), rtl(), pfs()],
-  customValue(value) {
-    // customValue
-    console.log(value);
-    return value;
-  },
   breakpoints: {
     sm: '768px',
     md: '992px',
