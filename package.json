@@ -1,6 +1,6 @@
 {
   "name": "agile-css",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "license": "MIT",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",

@@ -1,17 +1,25 @@
-### Atomic css
+# Atomic CSS
 
 [![npm version](https://badge.fury.io/js/agile-css.svg)](https://badge.fury.io/js/agile-css) [![npm](https://img.shields.io/npm/dw/agile-css.svg?logo=npm)](https://www.npmjs.com/package/agile-css) [![npm](https://img.shields.io/bundlephobia/minzip/agile-css)](https://www.npmjs.com/package/agile-css)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
-### Install package and vscode extensions
+## Install
 
 ```bash
-npm i agile-css@latest
+npm i agile-css@latest --save-dev
 ```
+
+With `yarn`
+
+```bash
+yarn add agile-css@latest -D
+```
+
+## Install VScode extensions
 
 [Agile Css Autocomplete extentions](https://marketplace.visualstudio.com/items?itemName=AgileCssAutocomplete.agile-css-autocomplete&ssr=false#overview)
 
-### Setup
+## Setup
 
 ### Create file: `agilecss.config.ts` or `agilecss.config.mjs` or `agilecss.config.js`
 
@@ -52,7 +60,7 @@ function testplugin2() {
 }
 ```
 
-### CLI (file package.json)
+## CLI (file package.json)
 
 ```json
 {
@@ -66,18 +74,18 @@ function testplugin2() {
 }
 ```
 
-### Compile
+## Compile
 
 ```bash
 npm run agile-css
 ```
 
-### Syntax
+## Syntax
 
 ```css
 <property>:<value>|<pseudo>|<pseudo><important -> "!">...@<media>
 
-Eg:
+Example:
 
 Class Name               CSS
 -----------------------------------------------------------------------------------------
@@ -94,13 +102,15 @@ trf:scale(2)          -> .trf/:scale\(2\) { transform: scale(2) }
 m:calc(20px_+_10px)   -> .m\:calc\(20px_+_10px\) { margin: calc(20px + 10px) }
 ```
 
-### Html
+## Result
+
+> HTML
 
 ```html
 <div class="c:red c:blue|h bgc:color-primary fz:20px ml:10px w:30%@md p:30px@md m:20px@+300px pos:relative!"></div>
 ```
 
-### Output: css code
+> Output
 
 ```css
 .c\:red { color: red }
