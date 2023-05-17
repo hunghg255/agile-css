@@ -77,7 +77,12 @@ function testplugin2() {
   ...
   "scripts": {
     ...
+    // production
+    "prebuild": "agile-css",
+
+    // development
     "agile-css": "agile-css -w",
+    // OR
     "agile-css-port": "agile-css -p 1234 -w",
   },
   ...
@@ -97,7 +102,12 @@ Exp: awesome.config.ts
   ...
   "scripts": {
     ...
+    // production
+    "prebuild": "agile-css -c awesome",
+
+    // development
     "agile-css": "agile-css -w -c awesome",
+    // OR
     "agile-css-port": "agile-css -p 1234 -w -c awesome",
   },
   ...
