@@ -19,25 +19,48 @@ function tryRequire(id: string, rootDir: string = process.cwd()) {
   }
 }
 
-function log(arr: any) {
-  return console.log(
-    ...arr.map(([text, color]: any) => `\x1b[${color}m${text}\x1b[0m`)
-  );
-}
+const COLORS = {
+  black: '\x1b[30m',
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  magenta: '\x1b[35m',
+  cyan: '\x1b[36m',
+  white: '\x1b[37m',
+  console_color: '\x1b[0m',
+} as const;
 
-const NAME = 'agilecss';
+const colorConsoleText = (text: string, color: keyof typeof COLORS) => {
+  const coloredText = `${COLORS[color]}${text}${COLORS.console_color}`;
+  return console.log(coloredText);
+};
 
-export async function startCli(
-  cwd = process.cwd(),
-  argv = process.argv,
-) {
-  const configDir = path.resolve(cwd, NAME);
+const DEFAULT_FILE_NAME = 'agilecss';
 
-  console.log(configDir);
-
-
+export async function startCli(cwd = process.cwd(), argv = process.argv) {
   try {
-    const defineConfig = tryRequire(`./${NAME}.config`, configDir) || {};
+    commander.program
+      .option('-p, --port <number>', 'port to listen on', parseInt)
+      .option('-w, --watch', 'watch for changes and reload')
+      .option('-c, --config <file_name>', 'File name config')
+      .parse(argv);
+    const options = commander.program.opts();
+
+    const PORT = options.port || 4321;
+    const server = http.createServer();
+    const FILE_NAME_CONFIG = options.config ?? DEFAULT_FILE_NAME;
+
+    const configDir = path.resolve(cwd, FILE_NAME_CONFIG);
+
+    let started = false;
+
+    const defineConfig =
+      tryRequire(`./${FILE_NAME_CONFIG}.config`, configDir) || {};
+
+    if (JSON.stringify(defineConfig) === '{}') {
+      throw new Error('Not Found Config');
+    }
 
     const {
       input: configInput,
@@ -47,16 +70,6 @@ export async function startCli(
       ...config
     } = defineConfig();
 
-    commander.program
-      .option('-p, --port <number>', 'port to listen on', parseInt)
-      .option('-w, --watch', 'watch for changes and reload')
-      .parse(argv);
-    const options = commander.program.opts();
-
-    const PORT = options.port || 4321;
-    const server = http.createServer();
-
-    let started = false;
     const input = configInput || './srcTest';
 
     const instance = new AgileCss();
@@ -79,19 +92,13 @@ export async function startCli(
     instance.on('valid', (diagnostic: any) => {
       if (started && options.watch) {
         const { message, className } = diagnostic;
-        log([
-          [`[${message}]`, 36],
-          [`(class: ${className})`, 36],
-        ]);
+        colorConsoleText(`\n✅ ${message} (class: ${className})`, 'green');
       }
     });
 
     instance.on('invalid', (diagnostic: any) => {
       const { message, className } = diagnostic;
-      log([
-        [`[${message}]`, 31],
-        [`(class: ${className})`, 35],
-      ]);
+      colorConsoleText(`\n❌ ${message} (class: ${className})`, 'red');
     });
 
     const atomicFind = (file: any) => {
@@ -132,12 +139,15 @@ export async function startCli(
       server.listen(PORT, () => {
         initial();
         watchFiles();
-        log([[`\n🚀 Agile CSS is running at port ${PORT}\n`, 36]]);
+        colorConsoleText(
+          `🚀 Agile CSS is running at port ${PORT}`,
+          'yellow'
+        );
       });
     } else {
       initial();
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    colorConsoleText('❌ Agile CSS Error: ' + error.message, 'red');
   }
 }

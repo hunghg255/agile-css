@@ -1,6 +1,6 @@
 {
   "name": "agile-css",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "license": "MIT",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -15,7 +15,7 @@
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
-    "test:cli": "ts-node ./dist/cli.mjs -w -p 1234",
+    "test:cli": "node ./dist/cli.mjs -w -p 1234 -c awesome",
     "agile-css": "agile-css -w"
   },
   "author": "hunghg255",

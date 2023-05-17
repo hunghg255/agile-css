@@ -27,6 +27,7 @@ yarn add agile-css@latest -D
 
 ### Create file: `agilecss.config.ts` or `agilecss.config.mjs` or `agilecss.config.js`
 
+
 ```js
 import { defineConfig, pfs, pixelToRem, rtl, validator } from "agile-css";
 
@@ -65,6 +66,11 @@ function testplugin2() {
 ```
 
 ## CLI (file package.json)
+```
+-p: Port
+-w: Watch
+-c: Config
+```
 
 ```json
 {
@@ -73,6 +79,26 @@ function testplugin2() {
     ...
     "agile-css": "agile-css -w",
     "agile-css-port": "agile-css -p 1234 -w",
+  },
+  ...
+}
+```
+
+### Custom config file
+
+- You can also use a custom config file instead of `agilecss.config.ts`. Just create `<FILE_NAME>.config.ts` to build command
+
+```js
+Exp: awesome.config.ts
+```
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "agile-css": "agile-css -w -c awesome",
+    "agile-css-port": "agile-css -p 1234 -w -c awesome",
   },
   ...
 }
