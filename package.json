@@ -17,8 +17,6 @@
     "build": "unbuild",
     "stub": "unbuild --stub",
     "test:cli": "node ./dist/cli.mjs -w -p 1234 -c awesome",
-    "agile-css": "agile-css -w",
-    "test": "vitest",
     "release": "changeset publish",
     "lint": "tsc"
   },
@@ -32,7 +30,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "agile-css": "^2.1.3",
     "chokidar": "^3.5.3",
     "commander": "^10.0.1",
     "cssnano": "^6.0.0",
