@@ -10,20 +10,25 @@
   },
   "files": [
     "bin",
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
     "test:cli": "node ./dist/cli.mjs -w -p 1234 -c awesome",
     "agile-css": "agile-css -w",
-    "test": "vitest"
+    "test": "vitest",
+    "release": "changeset publish",
+    "lint": "tsc"
   },
   "author": "hunghg255",
   "devDependencies": {
+    "@changesets/cli": "^2.26.1",
     "@types/node": "^18.15.13",
     "husky": "^8.0.3",
     "terser": "^5.17.1",
+    "tslib": "^2.5.2",
     "typescript": "^5.0.4"
   },
   "dependencies": {
