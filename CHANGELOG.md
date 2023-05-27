@@ -1,5 +1,13 @@
 # agile-css
 
+## 2.1.11
+
+### Patch Changes
+
+- 2a5d77b: update pkg
+- Updated dependencies [2a5d77b]
+  - agile-css@2.1.11
+
 ## 2.1.10
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "agile-css",
-  "version": "2.1.10",
+  "version": "2.1.11",
   "license": "MIT",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -30,7 +30,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "agile-css": "^2.1.9",
+    "agile-css": "^2.1.11",
     "chokidar": "^3.5.3",
     "commander": "^10.0.1",
     "cssnano": "^6.0.0",
