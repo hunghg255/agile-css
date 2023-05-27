@@ -3,7 +3,7 @@ import jiti from 'jiti';
 import * as commander from 'commander';
 import http from 'http';
 import fs from 'node:fs';
-import AgileCss from 'agile-css';
+import AgileCss from './index';
 import * as globby from 'globby';
 import * as chokidar from 'chokidar';
 

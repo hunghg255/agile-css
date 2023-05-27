@@ -30,7 +30,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "agile-css": "^2.1.11",
     "chokidar": "^3.5.3",
     "commander": "^10.0.1",
     "cssnano": "^6.0.0",
