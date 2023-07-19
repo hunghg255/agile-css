@@ -32,7 +32,6 @@
   "dependencies": {
     "chokidar": "^3.5.3",
     "commander": "^10.0.1",
-    "cssnano": "^6.0.0",
     "globby": "^13.1.4",
     "jiti": "^1.18.2",
     "rtl-css-js": "^1.16.1",
