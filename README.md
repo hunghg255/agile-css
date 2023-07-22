@@ -166,3 +166,9 @@ m:calc(20px_+_10px)   -> .m\:calc\(20px_+_10px\) { margin: calc(20px + 10px) }
 .p\:30px\@md { padding: 30px }
 .w\:30\%\@md { width: 30% } }
 ```
+
+### About
+
+<a href="https://www.buymeacoffee.com/hunghg255" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+Gia Hung – [hung.hg](https://hung.thedev.id)
