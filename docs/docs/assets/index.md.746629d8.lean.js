@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,U as l}from"./chunks/framework.adbdbaa5.js";const i=JSON.parse('{"title":"Atomic CSS Setup","description":"","frontmatter":{},"headers":[],"relativePath":"index.md","filePath":"index.md"}'),o={name:"index.md"},p=l("",31),e=[p];function t(c,r,D,y,F,C){return a(),n("div",null,e)}const u=s(o,[["render",t]]);export{i as __pageData,u as default};
